@@ -1,0 +1,24 @@
+{% comment %}
+  Renders link to manufacturer collection if available
+
+  Parameters:
+  - product: {Object} Product
+
+  Usage:
+  {% render 'pf-puzzle-collection', product: product %}
+{% endcomment %}
+
+{% assign collection_name = product.metafields.custom.collection %}
+{% if collection_name %}
+  {% liquid
+    assign collection = product.collections | where: 'title', collection_name | first
+    assign collection_display_name = collection_name | replace: product.vendor, '' | strip
+  %}
+  <div class="puzzle-collection">
+    {% if collection %}
+      Więcej puzzli z serii {{ collection_display_name | link_to: collection.url, title: collection.title }}
+    {% else %}
+      Seria: <b>{{ collection_display_name }}</b>
+    {% endif %}
+  </div>
+{% endif %}
