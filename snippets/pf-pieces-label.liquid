@@ -1,0 +1,34 @@
+{% comment %}
+  Renders product pieces label
+
+  Parameters:
+  - product: {Object} Product
+
+  Usage:
+  {% render 'pf-pieces-label', product: product %}
+{% endcomment %}
+
+{% assign pieces = product.metafields.custom.pieces.value %}
+{% if pieces.size > 0 %}
+  {% liquid
+    assign size_string = pieces | last | append: ''
+    assign ones = size_string | slice: -1, 1
+    assign tens = size_string | slice: -2, 1
+    assign units = '2,3,4' | split: ','
+    if units contains ones and tens != '1'
+      assign sufix = 'elementy'
+    else
+      assign sufix = 'elementów'
+    endif
+    assign uniqe_sizes = pieces | uniq
+    if uniqe_sizes.size == 1 and pieces.size > 1
+      assign pieces_string = pieces.size | append: ' x ' | append: size_string
+    else
+      assign pieces_string = pieces | join: ' + '
+    endif
+  %}
+  <span class="puzzle-size">
+    {{ size_string[-1] }}
+    {{ pieces_string | append: ' ' | append: sufix }}
+  </span>
+{% endif %}
