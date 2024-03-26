@@ -2567,6 +2567,9 @@
             },
             "link": {
               "label": "Link"
+            },
+            "link_image": {
+              "label": "Link image"
             }
           }
         }
