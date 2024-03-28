@@ -1,0 +1,46 @@
+{%- style -%}
+  .cart_delivery .grid {
+    display: grid;
+    grid-template-columns: max-content max-content;
+    row-gap: 0;
+    column-gap: 1em;
+  }
+  .cart_delivery p,
+  .cart_delivery .grid {
+    margin: 0 0 0.2em;
+  }
+  .cart_delivery .price {
+    color: black;
+    font-size: inherit;
+  }
+  .cart_delivery .gratis {
+    color: green;
+    font-weight: bold;
+  }
+  .cart_delivery a {
+    color: inherit;
+  }
+{%- endstyle -%}
+{% assign shipping_value = 10000 %}
+{% assign cart_total = cart.total_price %}
+{% assign shipping_value_left = shipping_value | minus: cart_total %}
+<div class="cart_delivery">
+  <h2>Dostawa</h2>
+  {% if shipping_value_left > 0 %}
+    <div class="grid">
+      <span>Paczkomat InPost:</span><span class="price">11,99 zł</span> <span>Kurier:</span
+      ><span class="price">14,99 zł</span>
+    </div>
+    <p style="font-size: 12px; color: red">
+      Do darmowej przesyłki brakuje Ci <b>{{ shipping_value_left | money_with_currency }}</b>.
+      <br>
+      <a href="/collections/dostepne">Dobierz produkty</a> i nie płać za dostawę.
+    </p>
+  {% else %}
+    <div class="grid">
+      <span>Paczkomat InPost:</span><span class="gratis">Gratis</span> <span>Kurier:</span
+      ><span class="gratis">Gratis</span>
+    </div>
+  {% endif %}
+  <p>Termin dostawy: 1-2 dni robocze</p>
+</div>

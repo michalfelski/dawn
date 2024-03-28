@@ -37,6 +37,7 @@
         </cart-note>
       {%- endif -%}
 
+      {% render 'pf-cart-delivery', cart: cart %}
       <div class="cart__blocks">
         {% for block in section.blocks %}
           {%- case block.type -%}
