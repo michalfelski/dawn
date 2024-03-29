@@ -34,7 +34,7 @@
     <p style="font-size: 12px; color: red">
       Do darmowej przesyłki brakuje Ci <b>{{ shipping_value_left | money_with_currency }}</b>.
       <br>
-      <a href="/collections/dostepne">Dobierz produkty</a> i nie płać za dostawę.
+      <a href="{{ routes.all_products_collection_url }}">Dobierz produkty</a> i nie płać za dostawę.
     </p>
   {% else %}
     <div class="grid">
