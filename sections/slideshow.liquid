@@ -4,13 +4,13 @@
 
 {%- if section.settings.slide_height == 'adapt_image' and section.blocks.first.settings.image != blank -%}
   {%- style -%}
+    slideshow-component .media img {
+      object-fit: cover;
+    }
+
     @media screen and (max-width: 749px) {
-      #Slider-{{ section.id }}::before,
-      #Slider-{{ section.id }} .media::before,
-      #Slider-{{ section.id }}:not(.banner--mobile-bottom) .banner__content::before {
-        padding-bottom: {{ 1 | divided_by: section.blocks.first.settings.image.aspect_ratio | times: 100 }}%;
-        content: '';
-        display: block;
+      #Slider-{{ section.id }} {
+        aspect-ratio: 4/3;
       }
     }
 
@@ -116,6 +116,11 @@
       <style>
         #Slide-{{ section.id }}-{{ forloop.index }} .banner__media::after {
           opacity: {{ block.settings.image_overlay_opacity | divided_by: 100.0 }};
+        }
+        @media screen and (max-width: 749px) {
+          #Slide-{{ section.id }}-{{ forloop.index }} .media img {
+            object-position: {{ block.settings.mobile-object-position }}% 0;
+          }
         }
       </style>
       <div
@@ -573,6 +578,16 @@
           ],
           "default": "center",
           "label": "t:sections.slideshow.blocks.slide.settings.text_alignment_mobile.label"
+        },
+        {
+          "type": "range",
+          "id": "mobile-object-position",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Mobile image crop",
+          "default": 0
         }
       ]
     }
