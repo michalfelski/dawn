@@ -16,6 +16,10 @@
   .search-modal__content .field {
     --inputs-radius: 22px;
   }
+  .predictive-search {
+    display: none;
+    z-index: 5;
+  }
   .header {
     grid-template-areas: 'left-icons heading icons' 'search search search';
   }
@@ -24,8 +28,12 @@
       grid-template-areas: 'heading search icons' 'navigation navigation navigation';
       grid-template-columns: auto 1fr auto;
     }
+    .search-modal__form {
+      max-width: 60rem;
+    }
     .search-modal__content {
       padding: 0 1rem 0 2rem;
+      justify-content: right;
     }
   }
 {%- endstyle -%}
