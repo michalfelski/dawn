@@ -18,9 +18,14 @@
 </div>
 
 {%- style -%}
-  .section-header.shopify-section-group-header-group {
-    z-index: 4;
-  }
+    #shopify-section-{{section.id}} {
+      position: sticky;
+      top: 117px;
+      z-index: 4;
+    }
+    .section-header.shopify-section-group-header-group {
+      z-index: 5;
+    }
   .pf-menu nav {
     padding-top: {{ section.settings.padding_top }}px;
     padding-bottom: {{ section.settings.padding_bottom }}px;
