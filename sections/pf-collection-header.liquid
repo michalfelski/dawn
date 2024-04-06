@@ -1,0 +1,74 @@
+{% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
+
+{%- style -%}
+  {% if collection.image %}
+    .collection-header-grid {
+      display: grid;
+      grid-template-columns: 1fr 300px
+  }
+  {% endif %}
+{%- endstyle -%}
+
+{% liquid
+  case collection.metafields.custom.type
+    when 'category'
+      assign prefix = 'Kategopria:'
+    when 'manufacturer'
+      assign prefix = 'Producent:'
+    else
+      assign prefix = 'Kolekcja:'
+  endcase
+%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="collection-header-grid page-width {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+    <h1>
+      <span class="visually-hidden">{{ prefix }}</span>
+      {{- collection.title | escape -}}
+    </h1>
+    {%- if collection.image -%}
+      <div class="media gradient">
+        <img
+          srcset="
+            {%- if collection.image.width >= 165 -%}{{ collection.image | image_url: width: 165 }} 165w,{%- endif -%}
+            {%- if collection.image.width >= 360 -%}{{ collection.image | image_url: width: 360 }} 360w,{%- endif -%}
+            {%- if collection.image.width >= 535 -%}{{ collection.image | image_url: width: 535 }} 535w,{%- endif -%}
+            {%- if collection.image.width >= 750 -%}{{ collection.image | image_url: width: 750 }} 750w,{%- endif -%}
+            {%- if collection.image.width >= 1070 -%}{{ collection.image | image_url: width: 1070 }} 1070w,{%- endif -%}
+            {%- if collection.image.width >= 1500 -%}{{ collection.image | image_url: width: 1500 }} 1500w,{%- endif -%}
+            {{ collection.image | image_url }} {{ collection.image.width }}w
+          "
+          src="{{ collection.image | image_url: width: 750 }}"
+          sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px, (min-width: 750px) calc(50vw - 130px), calc(50vw - 55px)"
+          alt="{{ collection.image.alt | escape }}"
+          width="{{ collection.image.width }}"
+          height="{{ collection.image.height }}"
+        >
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Collection header",
+  "tag": "section",
+  "class": "section collection-header",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection header"
+    }
+  ]
+}
+{% endschema %}

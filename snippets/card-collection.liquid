@@ -3,6 +3,7 @@
 
   Accepts:
   - card_collection: {Object} Collection Liquid object
+  - card_title: {String} Custom collection title (optional)
   - media_aspect_ratio: {String} Size of the product image card. Values are "square" and "portrait". Default is "square" (optional)
   - columns: {Number}
   - extend_height: {Boolean} Card height extends to available container space. Default: false (optional)
@@ -92,7 +93,9 @@
                 {% endif %}
                 class="full-unstyled-link"
               >
-                {%- if card_collection.title != blank -%}
+                {%- if card_title != blank -%}
+                  {{- card_title | escape -}}
+                {%- else -%}
                   {{- card_collection.title | escape -}}
                 {%- else -%}
                   {{ 'onboarding.collection_title' | t }}
@@ -124,7 +127,9 @@
               {% endif %}
               class="full-unstyled-link"
             >
-              {%- if card_collection.title != blank -%}
+              {%- if card_title != blank -%}
+                {{- card_title | escape -}}
+              {%- else -%}
                 {{- card_collection.title | escape -}}
               {%- else -%}
                 {{ 'onboarding.collection_title' | t }}

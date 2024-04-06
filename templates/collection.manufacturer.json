@@ -1,0 +1,79 @@
+{
+  "sections": {
+    "pf_filter_remover_fgcCeE": {
+      "type": "pf-filter-remover",
+      "settings": {
+      }
+    },
+    "pf_collection_header_NWRwHi": {
+      "type": "pf-collection-header",
+      "settings": {
+        "color_scheme": ""
+      }
+    },
+    "pf_collection_description_7Nf9kX": {
+      "type": "pf-collection-description",
+      "settings": {
+        "header": "",
+        "first_paragraph": 0,
+        "paragraphs_count": 3,
+        "color_scheme": ""
+      }
+    },
+    "pf_manufacturer_collections_h7VbyW": {
+      "type": "pf-manufacturer-collections",
+      "settings": {
+        "title": "Popularne kolekcje {{ collection.title }}",
+        "heading_size": "h2",
+        "image_ratio": "square",
+        "columns_desktop": 5,
+        "color_scheme": "",
+        "show_view_all": false,
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    },
+    "pf_collection_description_JhQkdG": {
+      "type": "pf-collection-description",
+      "settings": {
+        "header": "",
+        "first_paragraph": 3,
+        "paragraphs_count": 100,
+        "color_scheme": ""
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "custom_css": [
+
+      ],
+      "settings": {
+        "products_per_page": 16,
+        "columns_desktop": 4,
+        "color_scheme": "background-2",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": true,
+        "show_rating": false,
+        "enable_quick_add": true,
+        "enable_filtering": true,
+        "filter_type": "vertical",
+        "enable_sorting": true,
+        "columns_mobile": "2",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "pf_filter_remover_fgcCeE",
+    "pf_collection_header_NWRwHi",
+    "pf_collection_description_7Nf9kX",
+    "pf_manufacturer_collections_h7VbyW",
+    "pf_collection_description_JhQkdG",
+    "product-grid"
+  ]
+}

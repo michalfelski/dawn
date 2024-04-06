@@ -1,0 +1,18 @@
+{% style %}
+  {% case collection.metafields.custom.type %}
+    {% when "manufacturer" %}
+      [id^='Details-filter.p.vendor'] {display: none}
+  {% endcase %}
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Filter Remover",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Filter Remover"
+    }
+  ]
+}
+{% endschema %}

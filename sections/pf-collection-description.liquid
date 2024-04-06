@@ -1,0 +1,57 @@
+{%- liquid
+  assign first_paragraph = section.settings.first_paragraph | at_least: 0
+  assign number_of_paragraphs = section.settings.paragraphs_count | at_least: 1
+  assign description = collection.description | split: '</p>' | slice: first_paragraph, number_of_paragraphs | join: '</p>'
+-%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+    {% if section.settings.header.value %}
+      <h2>{{- section.settings.header | escape -}}</h2>
+    {% endif %}
+    {{ description }}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Collection description",
+  "tag": "section",
+  "class": "section collection-description",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "header",
+      "label": "Header"
+    },
+    {
+      "type": "number",
+      "id": "first_paragraph",
+      "default": 0,
+      "label": "First paragraph number",
+      "info": "Starting from 0"
+    },
+    {
+      "type": "number",
+      "id": "paragraphs_count",
+      "default": 100,
+      "label": "Number of paragraphs",
+      "info": "0 means unlimited, end of description"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection description"
+    }
+  ]
+}
+{% endschema %}
